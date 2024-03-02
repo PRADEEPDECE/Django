@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    {{ wizard.management_form }}
+    {{ wizard.form }}
+    <button type="submit">Next</button>
+</form>
