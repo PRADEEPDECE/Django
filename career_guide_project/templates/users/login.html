@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card p-4">
+
+            <h4 class="card-title text-center mb-2">Welcome Back</h4>
+            <p class="text-center text-muted mb-4">
+                Career Guidance System
+            </p>
+
+            {% if form.errors %}
+                <div class="alert alert-danger small">
+                    Invalid username or password.
+                </div>
+            {% endif %}
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    {{ form.password }}
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Login
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Don’t have an account?
+                    <a href="{% url 'register' %}" class="fw-semibold text-decoration-none">
+                        Register
+                    </a>
+                </small>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h3 class="card-title mb-4">Career Guidance Test</h3>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+          <tbody>
+            <tr>
+              <th style="width: 30%">Interests</th>
+              <td>
+                <input
+                  type="text"
+                  name="interests"
+                  class="form-control"
+                  placeholder="e.g. Programming, Teaching, Research"
+                  required
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <th>Skills</th>
+              <td>
+                <input
+                  type="text"
+                  name="skills"
+                  class="form-control"
+                  placeholder="e.g. Python, SQL, Communication"
+                  required
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <th>Educational Background</th>
+              <td>
+                <input
+                  type="text"
+                  name="education"
+                  class="form-control"
+                  placeholder="e.g. BSc Computer Science, Final Year Student"
+                  required
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <th>Career Goals (Optional)</th>
+              <td>
+                <input
+                  type="text"
+                  name="goals"
+                  class="form-control"
+                  placeholder="e.g. Work in IT industry, Research, Government job"
+                >
+              </td>
+            </tr>
+   <tr>
+    <th>Work Mode Preference</th>
+    <td>
+        <select name="work_mode" class="form-select" required>
+            <option value="">Select</option>
+            <option value="Remote">Remote</option>
+            <option value="On-site">On-site</option>
+            <option value="Hybrid">Hybrid</option>
+        </select>
+    </td>
+</tr>
+
+<tr>
+    <th>Preferred Work Location</th>
+    <td>
+        <input
+            type="text"
+            name="work_location"
+            class="form-control"
+            placeholder="e.g. Bengaluru, India / Anywhere"
+        >
+    </td>
+</tr>
+
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-end mt-3">
+        <button type="submit" class="btn btn-primary">
+          Get AI Career Recommendation
+        </button>
+      </div>
+    </form>
+
+    {% if recommendation %}
+      <hr>
+      <h5 class="mt-4">AI Career Recommendation</h5>
+      <pre class="recommendation">{{ recommendation }}</pre>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

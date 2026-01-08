@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>AI Career Recommendation</h2>
+<pre class="recommendation">{{ recommendation }}</pre>
+<form method="post" action="{% url 'save_report' %}">
+    {% csrf_token %}
+    <button type="submit">Save This Recommendation</button>
+</form>
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+{% endblock %}
