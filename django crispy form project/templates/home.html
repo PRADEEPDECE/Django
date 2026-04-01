@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row align-items-center" style="min-height: 60vh;">
+    <div class="col-md-8 offset-md-2 text-center">
+        <h1 class="display-3 fw-bold mb-4">Welcome to Your Auth App</h1>
+        <p class="lead mb-5">Experience seamless authentication with Django and Crispy Forms styling.</p>
+        
+        {% if user.is_authenticated %}
+            <div class="glass-card p-4 mx-auto" style="max-width: 400px;">
+                <h3 class="mb-3">You're In! 🎉</h3>
+                <p>Welcome back, <strong>{{ user.username }}</strong>. Access all your personalized content here.</p>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-custom mt-3 w-100">Secure Logout</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'login' %}" class="btn btn-outline-custom btn-lg px-5">Login to Account</a>
+                <a href="{% url 'signup' %}" class="btn btn-custom btn-lg px-5">Register Now</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
