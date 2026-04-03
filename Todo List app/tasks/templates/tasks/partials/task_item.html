@@ -1,0 +1,26 @@
+<div class="list-group-item d-flex justify-content-between align-items-center p-3 task-list-item {% if status == 'completed' %}completed{% elif status == 'overdue' %}border-start border-danger border-4{% else %}border-start border-warning border-4{% endif %}">
+    <div class="form-check d-flex align-items-center mb-0">
+        <input class="form-check-input mt-0 me-3 fs-5" type="checkbox" disabled {% if task.completed %}checked{% endif %}>
+        <div>
+            <h5 class="mb-1 fw-semibold task-title text-dark">{{ task.title }}</h5>
+            
+            <div class="d-flex align-items-center gap-2 mt-1">
+                {% if task.due_date %}
+                    <span class="badge {% if status == 'overdue' %}bg-danger{% elif status == 'completed' %}bg-secondary opacity-50{% else %}bg-warning text-dark{% endif %}">
+                        <i class="bi bi-calendar-event me-1"></i>{{ task.due_date|date:"M d, Y" }}
+                    </span>
+                {% else %}
+                    <span class="badge bg-light text-secondary border">No due date</span>
+                {% endif %}
+                
+                {% if task.description %}
+                    <span class="text-muted small ms-2"><i class="bi bi-body-text me-1"></i>Has description</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-sm btn-light border text-secondary rounded-pill px-3" href="{% url 'task-update' task.id %}">Edit</a>
+        <a class="btn btn-sm btn-light border text-danger rounded-pill px-3" href="{% url 'task-delete' task.id %}">Delete</a>
+    </div>
+</div>
